@@ -4,20 +4,20 @@ Created on Nov 18, 2021
 @author: loganoscher
 dictionary
 ''' 
+from itertools import count
 def main():
     file = open("/Users/loganoscher/Library/Mobile Documents/com~apple~TextEdit/Documents/testie.txt", "r")
     dictionary = dict()
     for line in file:
-        #line = line.remove('-', ':') 
+        line = line.strip()
+        line = line.lower()
+        line = line.replace('  ', '') 
         line = line.replace('-', '')
-        line = line.replace('  ', '')
-        line = line.replace('   ', '')
         line = line.replace(':', '')
         line = line.replace('.', '')
         line = line.replace('!', '')
         line = line.replace(',', '')
         line = line.replace('?', '')
-        line = line.strip()
         text = line.split(" ")  
         for word in text:
             if word in dictionary:
@@ -27,6 +27,7 @@ def main():
     dictionary = sorted(dictionary.items(), key=lambda item: item[1])
     for x in dictionary:
         print(x)
+    
 if __name__ == "__main__":
     main()
 #sorted(d.items(), key=lambda item: item[1])
